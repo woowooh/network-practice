@@ -32,9 +32,8 @@ def send_data(s, data):
 def receive_data(s):
     global ok
     ok += 1
-    print(ok)
     data_recv = s.recv(1024)
-    return data_recv == b"ok"
+    return data_recv == b"ok\n"
 
 
 def __main():
@@ -51,10 +50,9 @@ def __main():
     s = create_client()
     addr = ("localhost", 5001)
     connect_server(s, addr)
-    print(len(b"\n"))
     data = b"b" * (length - 1) + b"\n"
     sm = SessionMessage(number, length)
-    send_data(s, sm.to_json().encode())
+   # send_data(s, sm.to_json().encode())
     for i in range(number):
         send_data(s, data)
         f = receive_data(s)

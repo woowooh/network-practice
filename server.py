@@ -28,7 +28,7 @@ def deal_client(c, buffer_size):
             print("%s MB/s throughout" % (BYTES / time_cost))
             break
         if data_read[-1] == 10:
-            c.send(b"ok")
+            c.send(b"ok\n")
 
 
 def read_data_n(c, n):
@@ -49,8 +49,8 @@ def listen(s, length, number):
     head_size = len(head_str)
     while True:
         c, addr = s.accept()
-        data = c.recv(head_size)
-        d = json.loads(data.decode())
+#        data = c.recv(head_size)
+#        d = json.loads(data.decode())
         deal_client(c, length)
 
 
