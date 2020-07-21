@@ -80,6 +80,6 @@ public class BlockServer {
 // 调用链 fill() -> InputStreamReader::read(cbuf, offset, length)-> StreamDecoder::read(char[] var1, int var2, int var3)-> readBytes()-> SocketInputStream::socketRead0
 // openjdk\jdk\src\solaris\native\java\net Java_java_net_SocketInputStream_socketRead0:: NET_Read(fd, bufP, len)
 // 应该是 TCP栈从网卡收到数据后，如果有数据，则将获取的数据拷贝至应用层(实际收到的数据大小
-// 如果对应链接一直没收到数据，则挂起该链接，应用层表现为阻塞至 read 调用，直到有数据到达链接被唤醒
+// 如果对应链接一直没收到数据，则挂起该链接，应用层表现为阻塞在 read 调用，直到有数据到达，链接被唤醒
 // 太久没研究容易忘...
 // thanks to https://my.oschina.net/u/4367103/blog/4335872
